@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather in <%= city %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Current Weather in <%= city %></h1>
+  <p><strong>Temperature:</strong> <%= weather.temperature %>°C</p>
+  <p><strong>Wind Speed:</strong> <%= weather.windspeed %> km/h</p>
+  <p><strong>Pressure:</strong> <%= weather.pressure %> hPa</p>
+  <p><strong>Humidity:</strong> <%= weather.humidity %>%</p> 
+  <p><strong>Forecast:</strong> <%= weather.weathercode === 0 ? 'Sunny' : weather.weathercode === 1 ? 'Mainly Clear' : weather.weathercode === 2 ? 'Partly Cloudy' : weather.weathercode === 3 ? 'Overcast' : weather.weathercode === 45 ? 'Fog' : weather.weathercode === 48 ? 'Depositing Rime Fog' : weather.weathercode >= 51 && weather.weathercode <= 55 ? 'Drizzle' : weather.weathercode >= 61 && weather.weathercode <= 67 ? 'Rain' : weather.weathercode >= 71 && weather.weathercode <= 77 ? 'Snow' : weather.weathercode === 80 ? 'Rain Showers' : weather.weathercode >= 81 && weather.weathercode <= 82 ? 'Heavy Rain Showers' : 'Unknown' %></p>
+  <a href="/">Check another city</a>
+</body>
+</html>
