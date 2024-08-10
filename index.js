@@ -1,6 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000
@@ -15,73 +18,31 @@ app.get('/', (req, res) => {
 });
 
 app.post('/weather', async(req,res) => {
-    const city = req.body.city;
+    const location = req.body.city;
     try{
-        const geoResponse = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`);
-        const location = geoResponse.data.results[0];
-        const weatherResponse = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current_weather=true`);
-        const weather = weatherResponse.data.current_weather;
+        const geoResponse = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${process.env.API_KEY}`);
+        const geoData = geoResponse.data[0];
+        const lat = geoData.lat;
+        const lon = geoData.lon;
 
-        const weatherDescription = getWeatherDescription(weather.weathercode);
+        const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.API_KEY}`);
+        const weather = weatherResponse.data;
 
-        res.render('weather.ejs', {city: location.name, weather: weather, weatherDescription: weatherDescription});
+        res.render('weather.ejs', {
+            city: geoData.name,
+            weather: {
+                temperature: weather.main.temp,
+                feelsLike: weather.main.feels_like,
+                humidity: weather.main.humidity,
+                pressure: weather.main.pressure,
+                windspeed: weather.wind.speed,
+                weatherDescription: weather.weather[0].description,
+            }
+        });    
     } catch (error){
         res.status(500).send('Error fetching weather data');
     }
 })
-
-function getWeatherDescription(code) {
-    switch (code) {
-      case 0:
-        return 'Clear/Sunny';
-      case 1:
-        return 'Mainly Clear';
-      case 2:
-        return 'Partly Cloudy';
-      case 3:
-        return 'Overcast';
-      case 45:
-        return 'Foggy';
-      case 48:
-        return 'Depositing Rime Fog';
-      case 51:
-      case 53:
-      case 55:
-        return 'Drizzle';
-      case 56:
-      case 57:
-        return 'Freezing Drizzle';
-      case 61:
-      case 63:
-      case 65:
-        return 'Rainy';
-      case 66:
-      case 67:
-        return 'Freezing Rain';
-      case 71:
-      case 73:
-      case 75:
-        return 'Snowy';
-      case 77:
-        return 'Snow Grains';
-      case 80:
-        return 'Rain Showers';
-      case 81:
-      case 82:
-        return 'Heavy Rain Showers';
-      case 85:
-      case 86:
-        return 'Snow Showers';
-      case 95:
-        return 'Thunderstorms';
-      case 96:
-      case 99:
-        return 'Thunderstorms with Hail';
-      default:
-        return 'Unknown';
-    }
-  }
-  
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
