@@ -37,6 +37,7 @@ app.post('/weather', async(req,res) => {
                 pressure: weather.main.pressure,
                 windspeed: weather.wind.speed,
                 weatherDescription: weather.weather[0].description,
+                icon: weather.weather[0].icon, 
             }
         });    
     } catch (error){

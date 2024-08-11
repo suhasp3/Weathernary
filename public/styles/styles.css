@@ -1,0 +1,51 @@
+body {
+  background-color: #fffbd0;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffbb70;
+}
+
+button {
+  background-color: #ed9455;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #ffbb70;
+  color: #fff;
+}
+
+input[type="text"] {
+  background-color: #ffec9e;
+  color: #333;
+  border: 1px solid #ed9455;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#left-column {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+hr {
+  border-top: 1px solid #000;
+}
+
+#current-location-btn {
+  margin-top: 10px;
+}
