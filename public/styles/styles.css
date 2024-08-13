@@ -1,55 +1,90 @@
+/* General Styling */
 body {
-  background-color: #fffbd0;
-  color: #333;
+  background-color: #1c2e4a; /* #fffbd0 changed to #FAF0E6 */
+  color: #352F44; /* #333 changed to #352F44 */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #ffbb70;
-}
-p{
-    color: black;
-    margin-bottom: 2px
+h1, h2, h3, h4, h5, h6 {
+  color: white; /* #ffbb70 changed to #352F44 */
 }
 
+p {
+  color: white; /* Changed to #352F44 */
+  margin-bottom: 2px;
+}
+
+/* Button Styling */
 button {
-  background-color: #ed9455;
-  color: #fff;
+  background-color: #352F44; /* #ed9455 changed to #352F44 */
+  color: #FAF0E6; /* #fff changed to #FAF0E6 */
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
 }
 
 button:hover {
-  background-color: #ffbb70;
-  color: #fff;
+  background-color: #5C5470; /* #ffbb70 changed to #5C5470 */
+  color: #FAF0E6; /* #fff remains the same */
 }
 
+/* Input Styling */
 input[type="text"] {
-  background-color: #ffec9e;
-  color: #333;
-  border: 1px solid #ed9455;
+  background-color: #B9B4C7; /* #ffec9e changed to #B9B4C7 */
+  color: #352F44; /* #333 changed to #352F44 */
+  border: 1px solid #352F44; /* #ed9455 changed to #352F44 */
   padding: 10px;
   border-radius: 5px;
 }
 
+/* Left Column Styling */
 #left-column {
-  background-color: #f8f9fa;
+  background-color: #223759; /* #f8f9fa changed to #B9B4C7 */
   min-height: 100vh;
 }
 
+/* Header Styling */
 h2 {
   font-weight: bold;
 }
 
+/* Horizontal Rule */
 hr {
-  border-top: 1px solid #000;
+  border-top: 1px solid #352F44; /* #000 changed to #352F44 */
 }
 
+/* Current Location Button */
 #current-location-btn {
   margin-top: 10px;
+  background-color: #352F44; /* Added background color */
+  color: #FAF0E6; /* Added text color */
+  border-radius: 5px; /* Added border radius */
+}
+
+/* Hover Animation for Weather Stats */
+.p-3.border.rounded-3.bg-secondary {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.p-3.border.rounded-3.bg-secondary:hover {
+  transform: scale(1.05);
+  background-color: #5C5470; /* Adjusted color for hover state */
+}
+
+.p-3.border.rounded-3.bg-secondary svg {
+  transition: fill 0.3s ease;
+}
+
+.p-3.border.rounded-3.bg-secondary:hover svg {
+  fill: #FAF0E6;
+}
+
+.scroll{
+  background-color: #223759;
+}
+
+.edu-vic-wa-nt-beginner {
+  font-family: "Edu VIC WA NT Beginner", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
